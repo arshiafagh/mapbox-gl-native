@@ -14,6 +14,7 @@ public:
     RenderStaticData(gl::Context&, float pixelRatio, const optional<std::string>& programCacheDir);
 
     gl::VertexBuffer<FillLayoutVertex> tileVertexBuffer;
+    gl::VertexBuffer<BackgroundLayoutVertex> bgTileVertexBuffer;
     gl::VertexBuffer<RasterLayoutVertex> rasterVertexBuffer;
     gl::VertexBuffer<ExtrusionTextureLayoutVertex> extrusionTextureVertexBuffer;
 
@@ -21,6 +22,7 @@ public:
     gl::IndexBuffer<gl::LineStrip> tileBorderIndexBuffer;
 
     SegmentVector<FillAttributes> tileTriangleSegments;
+    SegmentVector<BackgroundAttributes> bgTileTriangleSegments;
     SegmentVector<DebugAttributes> tileBorderSegments;
     SegmentVector<RasterAttributes> rasterSegments;
     SegmentVector<ExtrusionTextureAttributes> extrusionTextureSegments;

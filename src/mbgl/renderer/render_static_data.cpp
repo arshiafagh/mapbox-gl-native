@@ -49,6 +49,7 @@ static gl::VertexVector<ExtrusionTextureLayoutVertex> extrusionTextureVertices()
 
 RenderStaticData::RenderStaticData(gl::Context& context, float pixelRatio, const optional<std::string>& programCacheDir)
     : tileVertexBuffer(context.createVertexBuffer(tileVertices())),
+      bgTileVertexBuffer(context.createVertexBuffer(tileVertices())),
       rasterVertexBuffer(context.createVertexBuffer(rasterVertices())),
       extrusionTextureVertexBuffer(context.createVertexBuffer(extrusionTextureVertices())),
       quadTriangleIndexBuffer(context.createIndexBuffer(quadTriangleIndices())),
@@ -59,6 +60,7 @@ RenderStaticData::RenderStaticData(gl::Context& context, float pixelRatio, const
 #endif
 {
     tileTriangleSegments.emplace_back(0, 0, 4, 6);
+    bgTileTriangleSegments.emplace_back(0, 0, 4, 6);
     tileBorderSegments.emplace_back(0, 0, 4, 5);
     rasterSegments.emplace_back(0, 0, 4, 6);
     extrusionTextureSegments.emplace_back(0, 0, 4, 6);

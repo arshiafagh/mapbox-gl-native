@@ -478,7 +478,7 @@ void Renderer::Impl::render(const UpdateParameters& updateParameters) {
         static const FillProgram::PaintPropertyBinders paintAttibuteData(properties, 0);
 
         for (const auto& clipID : parameters.clipIDGenerator.getClipIDs()) {
-            parameters.staticData.programs.fill.get(properties).draw(
+            parameters.staticData.programs.clippingMask.draw(
                 parameters.context,
                 gl::Triangles(),
                 gl::DepthMode::disabled(),
@@ -491,9 +491,8 @@ void Renderer::Impl::render(const UpdateParameters& updateParameters) {
                     gl::StencilMode::Replace
                 },
                 gl::ColorMode::disabled(),
-                FillProgram::UniformValues {
+                ClippingMaskProgram::UniformValues {
                     uniforms::u_matrix::Value{ parameters.matrixForTile(clipID.first) },
-                    uniforms::u_world::Value{ parameters.context.viewport.getCurrentValue().size },
                 },
                 parameters.staticData.tileVertexBuffer,
                 parameters.staticData.quadTriangleIndexBuffer,
